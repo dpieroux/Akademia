@@ -2,25 +2,28 @@ Back to the [Table of Contents](Contents.md).
 
 # Solutions to exercises of chapter 3, section 3
 
-## 1. `substitute` Program
+### 1. `substitute` Program
 ```
 substitute(X, Y, [X|L1], [Y|L2]) ← substitute(X,Y,L1,L2).
 substitute(X, Y, [Y|L1], [Y|L2]) ← X≠Y, substitute(X,Y,L1,L2).
 ```
 
-## 2. Variant of `select`
+---
+### 2. Variant of `select`
 The meaning of the program is all the ground goals `select(X, Ys, Zs)` such that
 the list `Ys` contains at least one element `X` and `Zs` is `Ys` without the
 first occurrence of `X`.
 
-## 3. Removing doubles
+---
+### 3. Removing doubles
 ```
 no_doubles([], []).
 no_doubles([A|As], Bs) ← member(A, As), no_double(As, Bs).
 no_doubles([A|As], [A|Bs]) ← not(member(A, As)), no_double(As, Bs).
 ```
 
-## 4.Even and Odd Permutations
+---
+### 4.Even and Odd Permutations
 ```
 even_permutation(Xs, Xs).
 even_permutation(Xs, Ys) ← transposition(Xs, Zs), odd_permutation(Zs, Ys).
@@ -31,7 +34,8 @@ transposition(L1XL2YL3, L1YL2XL3) ←
   append(L1, [Y|L2XL3], L1YL2XL3), append(L2, [X|L3], L2XL3),
 ```
 
-## 5. Merge Qort
+---
+### 5. Merge Sort
 ```
 merge_sort(Xs, Ys) ←
   split(Xs, [], [], X1s, X2s),
@@ -48,7 +52,8 @@ merge([X1|X1s], [X2|X2s], [X1|Ys]) ← X1<X2, merge(X1s, [X2|X2s], Ys).
 merge([X1|X1s], [X2|X2s], [X2|Ys]) ← X1≥X2, merge([X1|XXs], X2s, Ys).
 ```
 
-## 6. Finding the K$^{th}$ Largest Number using a median approximation
+---
+### 6. Finding the K$^{th}$ Largest Number using a median approximation
 ```
 break5(Xs, [Xs]) ← length(Xs, Len), Len ≤ 5.
 break5([X1, X2, X3, X4, X5 | Xs], [[X1, X2, X3, X4, X5] | X5ss) ←
@@ -80,7 +85,8 @@ kth_largest(Xs, K, X) ←
   length(Ls, L), K>L, plus(L, K', K), kth_largest(Bs, K', X).
 ```
 
-## 7. Playing Poker
+---
+### 7. Playing Poker
 To keep things simple, we use the anonymous variable `_` as well as arithmetic expressions.
 
 ```

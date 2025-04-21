@@ -18,6 +18,7 @@ copyright.
   * [Section 3](exercises-3.3.md)
   * [Section 4](exercises-3.4.md)
   * [Section 5](exercises-3.5.md)
+* [Chapter 4](exercises-4.md)
 
 ---
 Back to the [General Contents](../README.md)

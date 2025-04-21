@@ -9,5 +9,8 @@ visit https://creativecommons.org/licenses/by-nc-sa/4.0.
 
 # Contents
 * Prolog
-  * [Solutions to "_The Art of Prolog_", by Sterling and Shapiro, 2nd
-    edition](prolog/art_of_prolog/Contents.md)
+  * [Solutions](prolog/art_of_prolog/Contents.md) to [The Art of
+    Prolog](https://mitpress.mit.edu/9780262691635/the-art-of-prolog/), by
+    Sterling and Shapiro, 2nd edition
+  * [Solutions](prolog/euler/Contents.md) to the [Euler
+    project](https://projecteuler.net) challenge
