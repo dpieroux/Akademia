@@ -2,7 +2,7 @@ Back to the [Table of Contents](Contents.md).
 
 # Solutions to exercises of chapter 2
 
-## 2.1
+## Section 2.1
 
 ### 1. Sister and co
 ```
@@ -19,6 +19,7 @@ sibling(Sib1, Sib2) ←
   Sib1 ≠ Sib2.
 ```
 
+---
 ### 2. Parents in Law
 ```
 mother_in_law(MiL, Husband) ←
@@ -37,8 +38,8 @@ son_in_law(SiL, Wife) ←
   married_couple(Wife, Husband), son(SiL, Husband), not(son(Son, Wife)).
 ```
 
+---
 ### 3. Layout Description
-
 ```
 left_of(pen, hourglass).
 left_of(hourglass, butterfly).
@@ -50,10 +51,9 @@ right_of(Right, Left) ← left_of(Left, Right).
 below(Below, Above) ← above(Above, Below).
 ```
 
-## 2.2
+## Section 2.2
 
 ### 1. Course Organisation
-
 ```
 location(Course, Building) ←
   course(Course, Time, Lecturer, location(Building, Room)).
@@ -66,6 +66,7 @@ cannot_meet(Lecturer1, Lecturer2) ←
 For the last rule, the intended meaning is that two lecturers cannot meet if
 they teach at the same time.
 
+---
 ### 2. Schedule Conflict
 ```
 schedule_conflict(Time, Place, Course1, Course2) ←
@@ -78,6 +79,7 @@ schedule_conflict(Time, Place, Course1, Course2) ←
   Start2 <= Start1, Start1 <= Finish2.
 ```
 
+---
 ### 3. Meeting the College Requirements.
 ```
 result(alice, physics-1, 16).
@@ -93,6 +95,7 @@ success(Student) ← not(failed(Student)).
 Intended meaning: to succeed their academic year, students must have at least 10
 in every coarse they followed.
 
+---
 ### 4. My Little Geometric Database
 ```
 mk_vector(point(X1, Y1), point(X2, Y1), vector(X, Y)) ←
@@ -115,14 +118,14 @@ triangle(shape(P1, P2, P3)).
 quadriLateral(shape(P1, P2, P3, P4)).
 ```
 
-## 2.3
-
+## Section 2.3
 ### 1. Block Stack
 ```
 above(Above, Below) ← on(Above, Below).
 above(Above, Below) ← above(Above, X), on(X, Below).
 ```
 
+---
 ### 2. Higher Blocks
 ```
 left_on(X, Z) ← left_on(X, Y), left_on(Y, Z).
@@ -132,6 +135,7 @@ higher(X, Z) ← above(X, Y), left_on(Z, Y).
 ```
 Note: the intended meaning of higher is limited to 2 lines.
 
+---
 ### 3. Counting `connected` Proof Tree Nodes
 ```
 connected(a, e)
@@ -142,7 +146,6 @@ connected(a, e)
       edge(d, e)
       connected(e, e)
 ```
-
 The proof tree of ```connected(a, e)``` has thus 7 nodes.
 
 A proof tree for a path of $n$ intermediate graph nodes has $3+2n$ nodes. In the

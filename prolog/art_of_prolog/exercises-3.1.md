@@ -1,7 +1,7 @@
 Back to the [Table of Contents](Contents.md).
 
 # Solutions to exercises of chapter 3, section 1
-## 1. Axiomatization of <, > and ≥
+### 1. Axiomatization of <, > and ≥
 ```
 0 < s(X).
 s(X) < s(Y) ← X < Y.
@@ -20,7 +20,8 @@ These programs can be used with
 * With two non-ground arguments. The results of the query will be all the pairs
   of the instances of the arguments that fulfil the relation.
 
-## 2. Correctness and Completeness
+---
+### 2. Correctness and Completeness
 **Correctness**. Let X≤Y be in the program meaning. Then, either:
   * X=0 and Y is any natural number, which is correct as 0≤Y is a mathematical
     fact, and therefore it is in the intended meaning.
@@ -38,7 +39,8 @@ mathematically speaking. Then either
     X'≤Y'. As these relations corresponds to the body of the second rule, X≤Y is
     also in the program meaning.
 
-## 3. Number of Proof Tree Node
+---
+### 3. Number of Proof Tree Node
 We assume that n≤m, as it is the condition for the query s$^\text{n}$(0) ≤
 s$^\text{m}$(0) to be in the program meaning.
 
@@ -57,7 +59,8 @@ reduces the right hand term.
 | ...       | ...                                   |
 | n+2+(m-n) | natural_number(0).                    |
 
-## 4. Even and Odd
+---
+### 4. Even and Odd
 ```
 even(0).
 odd(s(0)).
@@ -74,28 +77,32 @@ odd(s(0)).
 odd(s(s(0))) ← odd(X).
 ```
 
-## 5. Fibonacci
+---
+### 5. Fibonacci
 ```
 fib(0, 1).
 fib(1, 1).
 fib(s(s(X)), F) ← fib(X, F1), fib(s(X), F2), plus(F1, F2, F).
 ```
 
-## 6. Integer Division
+---
+### 6. Integer Division
 `div(X, Y, Z)`: Z is the integer quotient of X by Y.
 ```
 div(X, Y, 0) ← X<Y.
 div(X, Y, s(Z)) ← X≥Y, plus(X', Y, X), div(X', Y, Z).
 ```
 
-## 7. GCD
+---
+### 7. GCD
 ```
 gcd(X, X, X).
 gcd(X, Y, Z) ← X<Y, plus(X, Y', Y), gcd(X, Y', Z).
 gcd(X, Y, Z) ← X>Y, plus(X', Y, X), gcd(X', Y, Z).
 ```
 
-## 8. Natural Numbers Starting at 1
+---
+### 8. Natural Numbers Starting at 1
 ```
 natural_number(1).
 natural_number(1+X) ← natural_number(X).
@@ -122,5 +129,6 @@ program for ackermann does not exist in the absence of 0.
 gcd(X, Y, Gcd) ← mod(X, Y, Z), gcd(Y, Z, Gcd).
 gcd(X, X, X).
 ```
+
 ---
 Back to the [Table of Contents](Contents.md).

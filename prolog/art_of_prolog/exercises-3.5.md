@@ -1,7 +1,8 @@
 Back to the [Table of Contents](Contents.md).
 
 # Solutions to exercises of chapter 3, section 5
-To keep things simple, we use the anonymous variable `_` as well as arithmetic expressions.
+To keep things simple, we use the anonymous variable `_` as well as arithmetic
+expressions.
 
 ## 1/ Normalised Addition
 ```
