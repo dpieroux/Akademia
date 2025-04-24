@@ -4,12 +4,13 @@ Back to the [Table of Contents](Contents.md).
 To keep things simple, we use the anonymous variable `_` as well as arithmetic
 expressions.
 
-## 1/ Normalised Addition
+### 1. Normalised Addition
 ```
 normalised(A+B) ← constant(A), normalised(B).
 ```
 
-## 2/ Boolean Formula
+---
+### 2. Boolean Formula
 ```
 boolean_formula(true).
 boolean_formula(false).
@@ -18,7 +19,8 @@ boolean_formula(A ∨ B) ← boolean_formula(A), boolean_formula(B).
 boolean_formula(~A) ← boolean_formula(A).
 ```
 
-## 3. Conjunctive Normal Form
+---
+### 3. Conjunctive Normal Form
 A `atom(X)` predicate is provided, which is true of `X` is an atom.
 ```
 literal(X) ← atom(X).
@@ -33,7 +35,8 @@ is_conjunctive_normal_form(A ∧ B) ←
   is_conjunctive_normal_form(A), is_conjunctive_normal_form(B).
 ```
 
-## 4. Moving Negations inside Conjunctions and Disjunctions
+---
+### 4. Moving Negations inside Conjunctions and Disjunctions
 ```
 negation_inwards(F, F) ← literal(F).
 negation_inwards(~(A ∧ B), notA ∨ notB)
@@ -42,7 +45,8 @@ negation_inwards(~(A ∨ B), notA ∧ notB).
   ← negation_inwards(~A, notA), negation_inwards(~B, notB).
 ```
 
-## 5. Computing the Conjunctive Normal Form
+---
+### 5. Computing the Conjunctive Normal Form
 ```
 conjunctive_normal_form(F, G) ←
   negation_inwards(F, F1),   % See exercise 4.
@@ -68,7 +72,8 @@ disjunction_inwards(A ∧ B, A' ∧ B') ←
   disjunction_inwards(A, A'),
   disjunction_inwards(B, B').
 ```
-## 6. Bags
+---
+### 6. Bags
 ```
 bag(void).
 bag(Element, Multiplicity, RestOfBag) ← natural(Multiplicity), bag(RestOfBag).

@@ -162,7 +162,7 @@ quicksort([3, 1, 2], Xs)
 ```
 Output: Xs=[1, 2, 3].
 
-### Derivative Trace
+### 2. Derivative Trace
 We need to add a rule for numbers: `derivative(Y,X,0) ← number(Y)`.
 
 ```
