@@ -1,10 +1,15 @@
-:- module(arithm, [prime_factors/2]).
+:- module(arithm, 
+    [prime_factors/2, number_digits/2, digits_number/2, divisors/2]).
 
 /**
  * Arithmetic functionalities
  * --------------------------
  *
  * The module offers the following routines:
+ * 
+ *  * number_digits(+N, -Digits): 'Digits' is digits of the number 'N'.
+ *
+ *  * digits_number(+Digits, -N): 'N' is the number whose digits are 'Digits'.
  *
  *  * prime_factors(+N, -PrimeFactors): prime factorization of the natural 'N'.
  *      'PrimeFactors' is the list of pairs (Pi, Ei) with prime numbers Pi in
@@ -17,6 +22,36 @@
  */
 
 :- use_module('prime_gen.pl').
+
+%-------------------------------------------------------------------------------
+% Digit conversion
+%-------------------------------------------------------------------------------
+
+/*
+ * number_digits(+N, -Digits): 'Digits' is digits of the number 'N'.
+ */
+
+number_digits(N, Digits) :- number_digits(N, [], Digits). 
+
+number_digits(N, Acc, Digits) :-
+    N >= 10,
+    divmod(N, 10, M, D),
+    number_digits(M, [D | Acc], Digits).
+
+number_digits(N, Acc, [N | Acc]) :- N<10.
+
+/*
+ * digits_number(+Digits, -N): 'N' is the number whose digits are 'Digits'.
+ */
+
+digits_number(Digits, N) :- digits_number(Digits, 0, N).
+
+digits_number([], N, N).
+
+digits_number([D|Ds], Acc, N) :-
+    Acc1 is D + 10*Acc,
+    digits_number(Ds, Acc1, N).
+
 
 %-------------------------------------------------------------------------------
 % Prime factorization
