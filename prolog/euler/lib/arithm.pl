@@ -1,20 +1,25 @@
-:- module(arithm, 
-    [prime_factors/2, number_digits/2, digits_number/2, divisors/2]).
+:- module(arithm, [
+    number_digits/2, digits_number/2, 
+    prime_factors/2, unfactor/2, 
+    divisors/2]).
 
 /**
  * Arithmetic functionalities
  * --------------------------
  *
  * The module offers the following routines:
- * 
+ *
  *  * number_digits(+N, -Digits): 'Digits' is digits of the number 'N'.
  *
  *  * digits_number(+Digits, -N): 'N' is the number whose digits are 'Digits'.
  *
  *  * prime_factors(+N, -PrimeFactors): prime factorization of the natural 'N'.
  *      'PrimeFactors' is the list of pairs (Pi, Ei) with prime numbers Pi in
- *      decreasing order and positive integers Ei such that 'N' is equal to the
+ *      increasing order and positive integers Ei such that 'N' is equal to the
  *      product of the terms Pi^Ei.
+ *
+ *  * unfactor(+PrimeFactors, -N): N is the number whose prime factors are
+ *      PrimeFactors.
  *
  *  * divisors(+N, -Divisors): 'Divisors' is the list of all the divisors of
  *      'N'. The divisors are not returned in order; however the first one is
@@ -54,34 +59,34 @@ digits_number([D|Ds], Acc, N) :-
 
 
 %-------------------------------------------------------------------------------
-% Prime factorization
+% Prime factorization and un-factorization 
 %-------------------------------------------------------------------------------
 
 /**
  * prime_factors(+N, -PrimeFactors)
  *
  * 'PrimeFactors' is the list of pairs (Pi, Ei) with prime numbers Pi in
- * decreasing order and positive integers Ei such that 'N' is equal to the
+ * increasing order and positive integers Ei such that 'N' is equal to the
  * product of the terms Pi^Ei.
  */
 
 prime_factors(N, PrimeFactors) :-
     prime_gen_new(PrimeGen),
-    prime_factors(N, PrimeGen, [], PrimeFactors).
+    prime_factors(N, PrimeGen, PrimeFactors, []).
 
-prime_factors(N, PGen, Acc, PrimeFactors) :-
+prime_factors(N, PGen, PrimeFactors, Future) :-
     N > 1,
     prime_gen_value(PGen, P),
     P*P =< N,
     !,
     factor_exponent(N, P, N1, E),
-    add_factor(P, E, Acc, Acc1),
     prime_gen_next(PGen, PGen1),
-    prime_factors(N1, PGen1, Acc1, PrimeFactors).
+    (E > 0 -> PrimeFactors = [(P, E)|Future1] ; PrimeFactors = Future1),
+    prime_factors(N1, PGen1, Future1, Future).
+    
+prime_factors(N, _, [(N, 1) | Future], Future) :- N > 1.
 
-prime_factors(N, _, Acc, [(N, 1) | Acc]) :- N > 1.
-
-prime_factors(1, _, Acc, Acc).
+prime_factors(1, _, Future, Future).
 
 
 /**
@@ -110,6 +115,22 @@ factor_exponent(N, _, Acc, N, Acc).
  */
 add_factor(P, E, Acc, [(P, E) | Acc]) :- E>0.
 add_factor(_, 0, Acc, Acc).
+
+
+/**
+ * unfactor(+PrimeFactors, -N)
+ * 
+ * N is the number whose prime factors are PrimeFactors.
+ */
+
+unfactor(PrimeFactors, N) :- unfactor_acc(PrimeFactors, 1, N).
+
+unfactor_acc([(P, E) | PrimeFactors], Acc, N) :-
+    Acc1 is Acc * P**E,
+    unfactor_acc(PrimeFactors, Acc1, N).
+
+unfactor_acc([], N, N).
+
 
 %-------------------------------------------------------------------------------
 % Divisors
